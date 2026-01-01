@@ -61,3 +61,16 @@ int main()
 
     return 0;
 }
+
+
+void print_recerce_recursion(vector<int> prefix, int n)
+{
+    if (n == 0)
+    {
+        return;
+    }
+
+    cout << prefix[n] << ' ';
+
+    print_recerce_recursion(prefix, n - 1);
+}

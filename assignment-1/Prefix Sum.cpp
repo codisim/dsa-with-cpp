@@ -1,38 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
+void print_recerce_recursion(vector<long long> &prefix, int n)
+{
+    if (n < 0)
+    {
+        return;
+    }
+
+    cout << prefix[n] << ' ';
+
+    print_recerce_recursion(prefix, n - 1);
+}
+
 int main()
 {
     int n;
     cin >> n;
 
-    vector<int> v(n);
+    vector<long long> v(n);
 
     for (int i = 0; i < n; i++)
     {
         cin >> v[i];
     }
 
-    vector<int> prefix(n);
-    prefix[1] = v[1];
-    for (int i = 0; i < n; i++)
+    vector<long long> prefix(n);
+    prefix[0] = v[0];
+    for (int i = 1; i < n; i++)
     {
         prefix[i] = prefix[i - 1] + v[i];
     }
 
-    int l = v[0];
-    int r = v[n - 1];
 
-    int sum;
-    if (l == 1)
-        sum = prefix[r];
-    else
-        sum = prefix[r] - prefix[l - 1];
-
-    for (int i = 0; i < n; i++)
-    {
-        cout << prefix[i] << ' ';
-    }
+    print_recerce_recursion(prefix, n-1);
 
     return 0;
 }
