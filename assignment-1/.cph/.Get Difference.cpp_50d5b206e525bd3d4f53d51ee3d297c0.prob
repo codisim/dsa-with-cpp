@@ -1,0 +1,1 @@
+{"name":"Local: Get Difference","url":"/home/waliullah/phitron/basic-dsa/assignment-1/Get Difference.cpp","tests":[{"id":1767274686636,"input":"2 4 1 5 3 6 -1","output":"5"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/waliullah/phitron/basic-dsa/assignment-1/Get Difference.cpp","group":"local","local":true}
