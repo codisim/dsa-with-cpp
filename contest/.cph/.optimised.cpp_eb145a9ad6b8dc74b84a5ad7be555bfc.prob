@@ -1,0 +1,1 @@
+{"name":"Local: optimised","url":"/home/waliullah/phitron/basic-dsa/contest/optimised.cpp","tests":[{"id":1767455773020,"input":"swiss","output":"w"},{"id":1767455793069,"input":"aabb","output":"-1"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"/home/waliullah/phitron/basic-dsa/contest/optimised.cpp","group":"local","local":true}
