@@ -19,8 +19,14 @@ void delete_at_head(Node *&head, Node *&tail)
 {
     Node *deleteNode = head;
     head = head->next;
-    head->prev = NULL;
     delete deleteNode;
+    if (head == NULL)
+    {
+        tail = NULL;
+        return;
+    }
+
+    head->prev = NULL;
 }
 
 void print_forward(Node *head)
