@@ -15,28 +15,6 @@ public:
     }
 };
 
-void print_forward(Node *head)
-{
-    Node *tmp = head;
-    while (tmp != NULL)
-    {
-        cout << tmp->val << " ";
-        tmp = tmp->next;
-    }
-    cout << endl;
-}
-
-void print_backward(Node *tail)
-{
-    Node *tmp = tail;
-    while (tmp != NULL)
-    {
-        cout << tmp->val << " ";
-        tmp = tmp->prev;
-    }
-    cout << endl;
-}
-
 int main()
 {
 
@@ -47,16 +25,16 @@ int main()
     Node *d = new Node(50);
 
     head->next = a;
-    a->prev = b;
+    a->next = b;
     b->next = c;
     c->next = d;
     d->next = a;
 
-    Node *slow = a;
-    Node *first = a;
+    Node *slow = head;
+    Node *first = head;
     bool flag = false;
 
-    while (true)
+    while (first != NULL && first->next != NULL)
     {
         slow = slow->next;
         first = first->next->next;
