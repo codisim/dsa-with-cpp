@@ -28,7 +28,7 @@ void insert_at_tail(Node *&head, Node *&tail, int val)
     tail = tail->next;
 }
 
-void reverse_linkedin_list(Node *&head, Node *tmp)
+void reverse_linkedin_list(Node *&head, Node* &tail, Node *tmp)
 {
     if (tmp->next == NULL)
     {
@@ -36,9 +36,10 @@ void reverse_linkedin_list(Node *&head, Node *tmp)
         return;
     }
 
-    reverse_linkedin_list(head, tmp->next);
+    reverse_linkedin_list(head, tail, tmp->next);
     tmp->next->next = tmp;
     tmp->next = NULL;
+    tail = tmp;
 }
 
 void print_linked_list(Node *head)
@@ -69,7 +70,7 @@ int main()
         insert_at_tail(head, tail, val);
     }
 
-    reverse_linkedin_list(head, head);
+    reverse_linkedin_list(head, tail, head);
     print_linked_list(head);
 
     return 0;
