@@ -15,17 +15,19 @@ public:
     }
 };
 
-void delete_any_pos(Node *head, int idx)
+void insert_into_tail(Node *&head, Node *&tail, int val)
 {
-    Node *tmp = head;
-    for (int i = 1; i < idx; i++)
+    Node *newNode = new Node(val);
+    if (head == NULL)
     {
-        tmp = tmp->next;
+        head = newNode;
+        tail = newNode;
+        return;
     }
-    Node *deleteNode = tmp->next;
-    tmp->next = tmp->next->next;
-    tmp->next->prev = tmp;
-    delete deleteNode;
+
+    tail->next = newNode;
+    newNode->prev = tail;
+    tail = newNode;
 }
 
 void print_forward(Node *head)
@@ -42,17 +44,20 @@ void print_forward(Node *head)
 int main()
 {
 
-    Node *head = new Node(10);
-    Node *a = new Node(20);
-    Node *tail = new Node(30);
+    Node *head = NULL;
+    Node *tail = NULL;
 
-    head->next = a;
-    a->prev = head;
+    int val;
+    while (true)
+    {
+        cin >> val;
+        if (val == -1)
+        {
+            break;
+        }
+        insert_into_tail(head, tail, val);
+    }
 
-    a->next = tail;
-    tail->prev = a;
-
-    delete_any_pos(head, 2);
     print_forward(head);
 
     return 0;
