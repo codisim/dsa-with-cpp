@@ -1,8 +1,6 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//  need to determine whether the stack and queue are the same or not based on the order
-
 int main()
 {
     stack<int> st;
