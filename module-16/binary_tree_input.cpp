@@ -19,7 +19,9 @@ Node* input_tree()
 {
     int val;
     cin >> val;
-    Node *root = new Node(val);
+    Node *root;
+    if(val == -1) root = NULL;
+    else root = new Node(val);
 
     queue<Node *> q;
     q.push(root);
@@ -74,6 +76,7 @@ int main()
 {
 
     Node* root = input_tree();
+    level_order(root);
 
     return 0;
 }
