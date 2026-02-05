@@ -61,25 +61,35 @@ Node *input_tree()
     return root;
 }
 
-
-int count_nodes(Node *root)
+int max_depth(Node *root)
 {
     if (root == NULL)
         return 0;
-    int l = count_nodes(root->left);
-    int r = count_nodes(root->right);
-
-    return l + r + 1;
-}
-
-
-
-int max_depth(Node* root){
-    if(root == NULL) return 0;
     int left = max_depth(root->left);
     int right = max_depth(root->right);
 
     return max(left, right) + 1;
+}
+
+void level_order(Node *root, int level)
+{
+    queue<Node *> q;
+    q.push(root);
+
+    int flag = 0;
+
+    while (!q.empty())
+    {
+        Node *f = q.front();
+        q.pop();
+        if (f->left == NULL && f->right == NULL)
+            cout << f->val << " ";
+
+        if (f->left != NULL)
+            q.push(f->left);
+        if (f->right != NULL)
+            q.push(f->right);
+    }
 }
 
 int main()
@@ -87,18 +97,15 @@ int main()
 
     Node *root = input_tree();
 
-    if (root == NULL) {
-        cout << "YES" << endl;
-        return 0;
-    }
+    int level;
+    cin >> level;
 
     int h = max_depth(root);
-    int n = count_nodes(root);
 
-    if(n == (pow(2, h) - 1))
-        cout << "YES";
+    if(level > h)
+        cout << "Invalid" << endl;
     else
-        cout << "NO";  
+        level_order(root, level);
 
     return 0;
 }

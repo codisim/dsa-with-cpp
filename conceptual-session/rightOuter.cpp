@@ -61,44 +61,51 @@ Node *input_tree()
     return root;
 }
 
-
-int count_nodes(Node *root)
+void level_order(Node *root)
 {
+
     if (root == NULL)
-        return 0;
-    int l = count_nodes(root->left);
-    int r = count_nodes(root->right);
+    {
+        cout << "Tree is empty" << endl;
+        return;
+    };
 
-    return l + r + 1;
+    queue<Node *> q;
+    q.push(root);
+
+    while (!q.empty())
+    {
+        Node *f = q.front();
+        q.pop();
+        cout << f->val << " ";
+
+        if (f->left != NULL)
+            q.push(f->left);
+        if (f->right != NULL)
+            q.push(f->right);
+    }
 }
 
-
-
-int max_depth(Node* root){
-    if(root == NULL) return 0;
-    int left = max_depth(root->left);
-    int right = max_depth(root->right);
-
-    return max(left, right) + 1;
+void rightOuter(Node *root)
+{
+    if (root->right)
+    {
+        rightOuter(root->right);
+    }
+    else if (root->left)
+    {
+        rightOuter(root->left);
+    }
+    cout << root->val << " ";
 }
+
 
 int main()
 {
 
     Node *root = input_tree();
-
-    if (root == NULL) {
-        cout << "YES" << endl;
-        return 0;
-    }
-
-    int h = max_depth(root);
-    int n = count_nodes(root);
-
-    if(n == (pow(2, h) - 1))
-        cout << "YES";
-    else
-        cout << "NO";  
+    // level_order(root);
+    rightOuter(root);
 
     return 0;
 }
