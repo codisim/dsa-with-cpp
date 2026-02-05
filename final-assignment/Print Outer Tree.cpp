@@ -61,33 +61,9 @@ Node *input_tree()
     return root;
 }
 
-void level_order(Node *root)
-{
-
-    if (root == NULL)
-    {
-        cout << "Tree is empty" << endl;
-        return;
-    };
-
-    queue<Node *> q;
-    q.push(root);
-
-    while (!q.empty())
-    {
-        Node *f = q.front();
-        q.pop();
-        cout << f->val << " ";
-
-        if (f->left != NULL)
-            q.push(f->left);
-        if (f->right != NULL)
-            q.push(f->right);
-    }
-}
-
 void rightOuter(Node *root)
 {
+    cout << root->val << " ";
     if (root->right)
     {
         rightOuter(root->right);
@@ -96,17 +72,34 @@ void rightOuter(Node *root)
     {
         rightOuter(root->left);
     }
+}
+
+void leftOuter(Node *root)
+{
+    if (root->left)
+    {
+        leftOuter(root->left);
+    }
+    else if (root->right)
+    {
+        leftOuter(root->right);
+    }
     cout << root->val << " ";
 }
 
-
-
 int main()
 {
-
     Node *root = input_tree();
-    // level_order(root);
-    rightOuter(root);
+    if (!root)
+        return 0;
+
+    if (root->left)
+        leftOuter(root->left);
+
+    cout << root->val << " ";
+
+    if (root->right)
+        rightOuter(root->right);
 
     return 0;
 }
