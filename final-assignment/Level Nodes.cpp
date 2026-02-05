@@ -71,24 +71,24 @@ int max_depth(Node *root)
     return max(left, right) + 1;
 }
 
-void level_order(Node *root, int level)
+void level_order(Node *root, int x)
 {
-    queue<Node *> q;
-    q.push(root);
-
-    int flag = 0;
+    queue<pair<Node *, int>> q;
+    q.push({root, 0});
 
     while (!q.empty())
     {
-        Node *f = q.front();
+        Node *f = q.front().first;
+        int level = q.front().second;
         q.pop();
-        if (f->left == NULL && f->right == NULL)
+
+        if (level == x)
             cout << f->val << " ";
 
-        if (f->left != NULL)
-            q.push(f->left);
-        if (f->right != NULL)
-            q.push(f->right);
+        if (f->left)
+            q.push({f->left, level + 1});
+        if (f->right)
+            q.push({f->right, level + 1});
     }
 }
 
@@ -97,15 +97,15 @@ int main()
 
     Node *root = input_tree();
 
-    int level;
-    cin >> level;
+    int x;
+    cin >> x;
 
     int h = max_depth(root);
 
-    if(level > h)
+    if (x > h || x < 0)
         cout << "Invalid" << endl;
     else
-        level_order(root, level);
+        level_order(root, x);
 
     return 0;
 }
