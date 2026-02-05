@@ -88,6 +88,7 @@ void level_order(Node *root)
 
 void rightOuter(Node *root)
 {
+    cout << root->val << " ";
     if (root->right)
     {
         rightOuter(root->right);
@@ -96,17 +97,28 @@ void rightOuter(Node *root)
     {
         rightOuter(root->left);
     }
-    cout << root->val << " ";
 }
 
-
+void leftOuter(Node *root)
+{
+    cout << root->val << " ";
+    if (root->left)
+    {
+        leftOuter(root->left);
+    }
+    else if (root->right)
+    {
+        leftOuter(root->right);
+    }
+}
 
 int main()
 {
 
     Node *root = input_tree();
     // level_order(root);
-    rightOuter(root);
+    // rightOuter(root);
+    leftOuter(root);
 
     return 0;
 }

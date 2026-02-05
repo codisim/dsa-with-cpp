@@ -100,6 +100,10 @@ void rightOuter(Node *root)
 }
 
 
+void leftOuter(Node* root){
+    
+}
+
 int main()
 {
 
